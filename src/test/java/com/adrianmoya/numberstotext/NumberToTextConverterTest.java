@@ -56,4 +56,17 @@ public class NumberToTextConverterTest {
         // Assert
         assertThat("Result was not THIRTY", result, equalTo("THIRTY"));
     }
+
+    @Test
+    public void shouldConvertNumbersInTheHundredsPlace() throws Exception {
+        // Arrange
+        String number = "227";
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+
+        // Assert
+        assertThat("Result was not TWO HUNDRED TWENTY SEVEN", result, equalTo("TWO HUNDRED TWENTY SEVEN"));
+    }
+
 }

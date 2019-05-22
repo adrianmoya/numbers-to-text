@@ -15,9 +15,28 @@ public class NumberToTextConverter {
             return NumberDictionary.ONES_DICTIONARY.get(number);
         }
 
+        if(intNumber >= 10 && intNumber <99){
+            return convertTens(number);
+        }
+
+        if(intNumber >= 100 && intNumber <1000){
+            // Get position in the HUNDREDS_DICTIONARY
+            String[] digits = number.split("(?<=.)");
+            sb.append(NumberDictionary.ONES_DICTIONARY.get(digits[0]));
+            sb.append(" HUNDRED ");
+            sb.append(convertNumber(digits[1] + digits[2]));
+            return sb.toString();
+        }
+        throw new Exception("Can't convert this number yet");
+    }
+
+
+    private static String convertTens(String number){
+        int intNumber = Integer.valueOf(number);
+        StringBuilder sb = new StringBuilder();
+
         if(intNumber >=10 && intNumber < 20) {
             // Get position in the TENS_DICTIONARY
-            int position = intNumber - 10;
             return NumberDictionary.TENS_10_TO_19_DICTIONARY.get(number);
         }
 
@@ -31,7 +50,6 @@ public class NumberToTextConverter {
             }
             return sb.toString();
         }
-        throw new Exception("Can't convert number yet");
+        return "";
     }
-
 }
