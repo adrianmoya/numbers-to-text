@@ -106,4 +106,16 @@ public class NumberToTextConverterTest {
         assertThat(result, equalTo("TWO HUNDRED THIRTY FOUR MILLION NINE HUNDRED FIFTY SIX THOUSAND FOUR HUNDRED THIRTY SIX"));
     }
 
+
+    @Test
+    public void shouldConvertNegativeNumbers() throws Exception {
+        // Arrange
+        String number = "-234956436";
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+
+        // Assert
+        assertThat(result, equalTo("MINUS TWO HUNDRED THIRTY FOUR MILLION NINE HUNDRED FIFTY SIX THOUSAND FOUR HUNDRED THIRTY SIX"));
+    }
 }

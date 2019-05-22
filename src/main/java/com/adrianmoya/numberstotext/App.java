@@ -14,7 +14,7 @@ public class App {
             String result = NumberToTextConverter.convertNumber(input);
             System.out.println(result);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input, please type a valid number");
+            System.out.println("Invalid input, please type a valid number. Examples: 23456, -345");
         } catch (Exception e) {
             System.out.println("Cannot convert that number");
         }

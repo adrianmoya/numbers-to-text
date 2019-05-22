@@ -7,11 +7,16 @@ public class NumberToTextConverter {
 
     public static String convertNumber(String number) throws Exception {
 
-        int chunks = number.length()%3+1;
+        int chunks = number.length() % 3 + 1;
 
         int intNumber = Integer.valueOf(number);
 
-        if (intNumber < 10) {
+        if (intNumber < 0) {
+            StringBuilder sb = new StringBuilder();
+            return sb.append("MINUS ").append(convertNumber(number.replace("-", ""))).toString();
+        }
+
+        if (intNumber >= 0 && intNumber < 10) {
             return convertOnes(number.charAt(0));
         }
 
