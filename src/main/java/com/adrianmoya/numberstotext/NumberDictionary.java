@@ -1,6 +1,6 @@
 package com.adrianmoya.numberstotext;
 
-import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -9,50 +9,47 @@ import java.util.Map;
  */
 public class NumberDictionary {
 
-    // public static String ONES_DICTIONARY[] = { "ZERO", "ONE", "TWO", "THREE",
-    // "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT",
-    // "NINE" };
+        public static Map<Character, String> ONES_DICTIONARY;
+        static {
+                ONES_DICTIONARY = new HashMap<>();
+                ONES_DICTIONARY.put('0', "ZERO");
+                ONES_DICTIONARY.put('1', "ONE");
+                ONES_DICTIONARY.put('2', "TWO");
+                ONES_DICTIONARY.put('3', "THREE");
+                ONES_DICTIONARY.put('4', "FOUR");
+                ONES_DICTIONARY.put('5', "FIVE");
+                ONES_DICTIONARY.put('6', "SIX");
+                ONES_DICTIONARY.put('7', "SEVEN");
+                ONES_DICTIONARY.put('8', "EIGHT");
+                ONES_DICTIONARY.put('9', "NINE");
+        }
 
-    // public static String TENS_DICTIONARY[] = { "TEN", "ELEVEN", "TWELVE",
-    // "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN",
-    // "SEVENTEEN", "EIGHTEEN", "NINETEEN" };
+        public static Map<String, String> TENS_10_TO_19_DICTIONARY;
+        static {
+                TENS_10_TO_19_DICTIONARY = new HashMap<>();
+                TENS_10_TO_19_DICTIONARY.put("10", "TEN");
+                TENS_10_TO_19_DICTIONARY.put("11", "ELEVEN");
+                TENS_10_TO_19_DICTIONARY.put("12", "TWELVE");
+                TENS_10_TO_19_DICTIONARY.put("13", "THIRTEEN");
+                TENS_10_TO_19_DICTIONARY.put("14", "FOURTEEN");
+                TENS_10_TO_19_DICTIONARY.put("15", "FIFTEEN");
+                TENS_10_TO_19_DICTIONARY.put("16", "SIXTEEN");
+                TENS_10_TO_19_DICTIONARY.put("17", "SEVENTEEN");
+                TENS_10_TO_19_DICTIONARY.put("18", "EIGHTEEN");
+                TENS_10_TO_19_DICTIONARY.put("19", "NINETEEN");
+        }
 
-    // public static String TENS_20_TO_90_DICTIONARY[] = { "TWENTY", "THIRTY",
-    // "FORTY", "FIFTY", "SIXTY", "SEVENTY",
-    // "EIGHTY", "NINETY" };
-
-    public static Map<String, String> ONES_DICTIONARY = Map.ofEntries(
-            new AbstractMap.SimpleEntry<String, String>("0", "ZERO"),
-            new AbstractMap.SimpleEntry<String, String>("1", "ONE"),
-            new AbstractMap.SimpleEntry<String, String>("2", "TWO"),
-            new AbstractMap.SimpleEntry<String, String>("3", "THREE"),
-            new AbstractMap.SimpleEntry<String, String>("4", "FOUR"),
-            new AbstractMap.SimpleEntry<String, String>("5", "FIVE"),
-            new AbstractMap.SimpleEntry<String, String>("6", "SIX"),
-            new AbstractMap.SimpleEntry<String, String>("7", "SEVEN"),
-            new AbstractMap.SimpleEntry<String, String>("8", "EIGHT"),
-            new AbstractMap.SimpleEntry<String, String>("9", "NINE"));
-
-    public static Map<String, String> TENS_10_TO_19_DICTIONARY = Map.ofEntries(
-            new AbstractMap.SimpleEntry<String, String>("10", "TEN"),
-            new AbstractMap.SimpleEntry<String, String>("11", "ELEVEN"),
-            new AbstractMap.SimpleEntry<String, String>("12", "TWELVE"),
-            new AbstractMap.SimpleEntry<String, String>("13", "THIRTEEN"),
-            new AbstractMap.SimpleEntry<String, String>("14", "FOURTEEN"),
-            new AbstractMap.SimpleEntry<String, String>("15", "FIFTEEN"),
-            new AbstractMap.SimpleEntry<String, String>("16", "SIXTEEN"),
-            new AbstractMap.SimpleEntry<String, String>("17", "SEVENTEEN"),
-            new AbstractMap.SimpleEntry<String, String>("18", "EIGHTEEN"),
-            new AbstractMap.SimpleEntry<String, String>("19", "NINETEEN"));
-
-    public static Map<String, String> TENS_20_TO_90_DICTIONARY = Map.ofEntries(
-            new AbstractMap.SimpleEntry<String, String>("2", "TWENTY"),
-            new AbstractMap.SimpleEntry<String, String>("3", "THIRTY"),
-            new AbstractMap.SimpleEntry<String, String>("4", "FOURTY"),
-            new AbstractMap.SimpleEntry<String, String>("5", "FIFTY"),
-            new AbstractMap.SimpleEntry<String, String>("6", "SIXTY"),
-            new AbstractMap.SimpleEntry<String, String>("7", "SEVENTY"),
-            new AbstractMap.SimpleEntry<String, String>("8", "EIGHTY"),
-            new AbstractMap.SimpleEntry<String, String>("9", "NINETY"));
+        public static Map<Character, String> TENS_20_TO_90_DICTIONARY;
+        static {
+                TENS_20_TO_90_DICTIONARY = new HashMap<>();
+                TENS_20_TO_90_DICTIONARY.put('2', "TWENTY");
+                TENS_20_TO_90_DICTIONARY.put('3', "THIRTY");
+                TENS_20_TO_90_DICTIONARY.put('4', "FOURTY");
+                TENS_20_TO_90_DICTIONARY.put('5', "FIFTY");
+                TENS_20_TO_90_DICTIONARY.put('6', "SIXTY");
+                TENS_20_TO_90_DICTIONARY.put('7', "SEVENTY");
+                TENS_20_TO_90_DICTIONARY.put('8', "EIGHTY");
+                TENS_20_TO_90_DICTIONARY.put('9', "NINETY");
+        }
 
 }

@@ -7,12 +7,12 @@ public class NumberToTextConverter {
 
     public static String convertNumber(String number) throws Exception {
 
-        StringBuilder sb = new StringBuilder();
+        int chunks = number.length()%3+1;
 
         int intNumber = Integer.valueOf(number);
 
         if (intNumber < 10) {
-            return convertOnes(number);
+            return convertOnes(number.charAt(0));
         }
 
         if (intNumber >= 10 && intNumber < 100) {
@@ -28,6 +28,7 @@ public class NumberToTextConverter {
         }
 
         if (intNumber >= 1000000 && intNumber < 1000000000) {
+            StringBuilder sb = new StringBuilder();
             String millionChunk = number.substring(0, number.length() - 6);
             sb.append(convertNumber(millionChunk)).append(" MILLION ");
             sb.append(convertNumber(number.substring(number.length() - 6, number.length())));
@@ -48,10 +49,10 @@ public class NumberToTextConverter {
     private static String convertHundreds(String number) throws Exception {
         StringBuilder sb = new StringBuilder();
         // Get position in the HUNDREDS_DICTIONARY
-        String[] digits = number.split("(?<=.)");
+        char[] digits = number.toCharArray();
         sb.append(NumberDictionary.ONES_DICTIONARY.get(digits[0]));
         sb.append(" HUNDRED ");
-        sb.append(convertNumber(digits[1] + digits[2]));
+        sb.append(convertNumber(String.valueOf(digits, 1, 2)));
         return sb.toString();
     }
 
@@ -66,9 +67,10 @@ public class NumberToTextConverter {
 
         if (intNumber >= 20 && intNumber < 100) {
             // Get position in the TENS_20_TO_90_DICTIONARY
-            String[] digits = number.split("(?<=.)");
+            char[] digits = number.toCharArray();
             sb.append(NumberDictionary.TENS_20_TO_90_DICTIONARY.get(digits[0]));
-            if (!"0".equals(digits[1])) {
+            Character zero = '0';
+            if (!zero.equals(digits[1])) {
                 sb.append(" ");
                 sb.append(convertOnes(digits[1]));
             }
@@ -77,7 +79,7 @@ public class NumberToTextConverter {
         return "";
     }
 
-    private static String convertOnes(String digit) {
+    private static String convertOnes(char digit) {
         return NumberDictionary.ONES_DICTIONARY.get(digit);
     }
 }
