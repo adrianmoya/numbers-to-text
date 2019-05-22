@@ -24,12 +24,25 @@ public class NumberToTextConverter {
         }
 
         if (intNumber >= 1000 && intNumber < 1000000) {
-            String thousandChunk = number.substring(0, number.length() - 3);
-            sb.append(convertNumber(thousandChunk)).append(" THOUSAND ");
-            sb.append(convertNumber(number.substring(number.length() - 3, number.length())));
+            return convertThousands(number);
+        }
+
+        if (intNumber >= 1000000 && intNumber < 1000000000) {
+            String millionChunk = number.substring(0, number.length() - 6);
+            sb.append(convertNumber(millionChunk)).append(" MILLION ");
+            sb.append(convertNumber(number.substring(number.length() - 6, number.length())));
             return sb.toString();
         }
+
         throw new Exception("Can't convert this number yet");
+    }
+
+    private static String convertThousands(String number) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        String thousandChunk = number.substring(0, number.length() - 3);
+        sb.append(convertNumber(thousandChunk)).append(" THOUSAND ");
+        sb.append(convertNumber(number.substring(number.length() - 3, number.length())));
+        return sb.toString();
     }
 
     private static String convertHundreds(String number) throws Exception {

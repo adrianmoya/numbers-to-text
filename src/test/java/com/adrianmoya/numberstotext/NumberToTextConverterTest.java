@@ -18,7 +18,7 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not ZERO", result, equalTo("ZERO"));
+        assertThat(result, equalTo("ZERO"));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not THIRTEEN", result, equalTo("THIRTEEN"));
+        assertThat(result, equalTo("THIRTEEN"));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not TWENTY FIVE", result, equalTo("TWENTY FIVE"));
+        assertThat(result, equalTo("TWENTY FIVE"));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not THIRTY", result, equalTo("THIRTY"));
+        assertThat(result, equalTo("THIRTY"));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not TWO HUNDRED TWENTY SEVEN", result, equalTo("TWO HUNDRED TWENTY SEVEN"));
+        assertThat(result, equalTo("TWO HUNDRED TWENTY SEVEN"));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not THIRTY FOUR THOUSAND TWO HUNDRED TWENTY SEVEN", result,
+        assertThat(result,
                 equalTo("THIRTY FOUR THOUSAND TWO HUNDRED TWENTY SEVEN"));
     }
 
@@ -91,8 +91,19 @@ public class NumberToTextConverterTest {
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat("Result was not NINE HUNDRED NINETY NINE THOUSAND NINE HUNDRED NINETY NINE", result,
-                equalTo("NINE HUNDRED NINETY NINE THOUSAND NINE HUNDRED NINETY NINE"));
+        assertThat(result, equalTo("NINE HUNDRED NINETY NINE THOUSAND NINE HUNDRED NINETY NINE"));
+    }
+
+    @Test
+    public void shouldConvertNumbersInTheMillionsPlace() throws Exception {
+        // Arrange
+        String number = "234956436";
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+
+        // Assert
+        assertThat(result, equalTo("TWO HUNDRED THIRTY FOUR MILLION NINE HUNDRED FIFTY SIX THOUSAND FOUR HUNDRED THIRTY SIX"));
     }
 
 }
