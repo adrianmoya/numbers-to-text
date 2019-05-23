@@ -1,6 +1,6 @@
-# Numbers To Text - A TDD excersize
+# Numbers To Text - A TDD exercise
 
-In order to run this excersize, follow these steps:
+In order to run this exercise, follow these steps:
 
 1. Clone the repository
 
