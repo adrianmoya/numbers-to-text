@@ -16,6 +16,7 @@ public class NumberToTextConverter {
      */
     public static String convertNumber(String number) {
         
+        // Check if the number is negative
         if (MINUS.equals(number.charAt(0))) {
             StringBuilder sb = new StringBuilder();
             return sb.append("MINUS ").append(convertNumber(number.replace("-", ""))).toString();
@@ -47,13 +48,17 @@ public class NumberToTextConverter {
         int chunksLeft = chunksCount - 1;
         String chunk = number.substring(0, number.length() - chunksLeft * 3);
         sb.append(convertChunk(chunk, NumberDictionary.CHUNK_SUFFIXES.get((char) (chunksLeft + '0'))));
-        sb.append(convertNumber(number.substring(chunk.length())));
+        // Discard the rest if its only zeroes
+        String rest = number.substring(chunk.length());
+        if(!isOnlyZeroes(rest)){
+            sb.append(" ").append(convertNumber(rest));
+        }
         return sb.toString();
     }
 
     private static String convertChunk(String chunk, String suffix) {
         StringBuilder sb = new StringBuilder();
-        sb.append(convertNumber(chunk)).append(" ").append(suffix).append(" ");
+        sb.append(convertNumber(chunk)).append(" ").append(suffix);
         return sb.toString();
     }
 
@@ -62,8 +67,8 @@ public class NumberToTextConverter {
         char[] digits = number.toCharArray();
         sb.append(NumberDictionary.ONES_DICTIONARY.get(digits[0]));
         sb.append(" HUNDRED");
-        String rest = String.valueOf(digits, 1, 2).replaceFirst(LEADING_ZEROES_REGEXP, "");
-        if (!"0".equals(rest)) {
+        String rest = String.valueOf(digits, 1, 2);
+        if (!isOnlyZeroes(rest)) {
             sb.append(" ").append(convertNumber(rest));
         }
         return sb.toString();
@@ -90,5 +95,13 @@ public class NumberToTextConverter {
 
     private static String convertOnes(char digit) {
         return NumberDictionary.ONES_DICTIONARY.get(digit);
+    }
+
+    private static boolean isOnlyZeroes(String number) {
+        String zeroes = number.replaceFirst(LEADING_ZEROES_REGEXP, "");
+        if ("0".equals(zeroes)) {
+            return true;
+        }
+        return false;
     }
 }

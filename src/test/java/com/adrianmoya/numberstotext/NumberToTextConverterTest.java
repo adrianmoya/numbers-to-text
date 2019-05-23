@@ -206,4 +206,16 @@ public class NumberToTextConverterTest {
         // Assert
         assertThat(result, equalTo("ZERO"));
     }
+
+    @Test
+    public void shouldConvertNumbersWithTrailingZeroes() throws Exception {
+        // Arrange
+        String number = "670000000";
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+
+        // Assert
+        assertThat(result, equalTo("SIX HUNDRED SEVENTY MILLION"));
+    }    
 }
