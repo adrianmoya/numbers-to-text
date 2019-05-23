@@ -14,4 +14,4 @@ In order to run this excersize, follow these steps:
 
 `java -jar target/numbers-to-text-1.0.jar <number>`
 
-where <number> is the number you want to convert to text.
+where `<number>` is the number you want to convert to text.

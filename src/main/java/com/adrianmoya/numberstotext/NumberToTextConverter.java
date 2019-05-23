@@ -7,7 +7,7 @@ public class NumberToTextConverter {
 
     static final Character CHAR_ZERO = '0';
 
-    public static String convertNumber(String number) throws Exception {
+    public static String convertNumber(String number) {
 
         Character minus = '-';
         if (minus.equals(number.charAt(0))) {
@@ -44,13 +44,13 @@ public class NumberToTextConverter {
         return sb.toString();
     }
 
-    private static String convertChunk(String chunk, String suffix) throws Exception {
+    private static String convertChunk(String chunk, String suffix) {
         StringBuilder sb = new StringBuilder();
         sb.append(convertNumber(chunk)).append(" ").append(suffix).append(" ");
         return sb.toString();
     }
 
-    private static String convertHundreds(String number) throws Exception {
+    private static String convertHundreds(String number) {
         StringBuilder sb = new StringBuilder();
         char[] digits = number.toCharArray();
         sb.append(NumberDictionary.ONES_DICTIONARY.get(digits[0]));
