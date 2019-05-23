@@ -6,20 +6,27 @@ package com.adrianmoya.numberstotext;
 public class NumberToTextConverter {
 
     static final Character CHAR_ZERO = '0';
+    static final String LEADING_ZEROES_REGEXP = "^0+(?!$)";
+    static final Character MINUS = '-';
 
+    /**
+     * Converts a number into it's text representation.
+     * @param number A positive or negative integer number
+     * @return The text that represents the number in english words
+     */
     public static String convertNumber(String number) {
-
-        Character minus = '-';
-        if (minus.equals(number.charAt(0))) {
+        
+        if (MINUS.equals(number.charAt(0))) {
             StringBuilder sb = new StringBuilder();
             return sb.append("MINUS ").append(convertNumber(number.replace("-", ""))).toString();
         }
 
+        // Remove leading zeroes if present
+        number = number.replaceFirst(LEADING_ZEROES_REGEXP, "");
+
         // Process number in the range of hundreds
         if (number.length() < 4) {
             int intNumber = Integer.valueOf(number);
-            // Get the number with leading zeroes removed
-            number = String.valueOf(intNumber);
 
             if (intNumber >= 0 && intNumber < 10) {
                 return convertOnes(number.charAt(0));
@@ -54,8 +61,11 @@ public class NumberToTextConverter {
         StringBuilder sb = new StringBuilder();
         char[] digits = number.toCharArray();
         sb.append(NumberDictionary.ONES_DICTIONARY.get(digits[0]));
-        sb.append(" HUNDRED ");
-        sb.append(convertNumber(String.valueOf(digits, 1, 2)));
+        sb.append(" HUNDRED");
+        String rest = String.valueOf(digits, 1, 2).replaceFirst(LEADING_ZEROES_REGEXP, "");
+        if (!"0".equals(rest)) {
+            sb.append(" ").append(convertNumber(rest));
+        }
         return sb.toString();
     }
 
@@ -66,9 +76,7 @@ public class NumberToTextConverter {
         if (intNumber >= 10 && intNumber < 20) {
             // Get position in the TENS_DICTIONARY
             return NumberDictionary.TENS_10_TO_19_DICTIONARY.get(number);
-        }
-
-        if (intNumber >= 20 && intNumber < 100) {
+        } else {
             // Get position in the TENS_20_TO_90_DICTIONARY
             char[] digits = number.toCharArray();
             sb.append(NumberDictionary.TENS_20_TO_90_DICTIONARY.get(digits[0]));
@@ -78,7 +86,6 @@ public class NumberToTextConverter {
             }
             return sb.toString();
         }
-        return "";
     }
 
     private static String convertOnes(char digit) {

@@ -12,13 +12,13 @@ public class NumberToTextConverterTest {
     @Test
     public void shouldConvertNumbersInTheOnesPlace() throws Exception {
         // Arrange
-        String number = "0";
+        String number = "1";
 
         // Act
         String result = NumberToTextConverter.convertNumber(number);
 
         // Assert
-        assertThat(result, equalTo("ZERO"));
+        assertThat(result, equalTo("ONE"));
     }
 
     @Test
@@ -180,5 +180,30 @@ public class NumberToTextConverterTest {
 
         // Assert
         assertThat(result, equalTo("EIGHT"));
+    }
+
+
+    @Test
+    public void shouldHandleNumbersWithLeadingZeroes() throws Exception {
+        // Arrange
+        String number = "0800";
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+
+        // Assert
+        assertThat(result, equalTo("EIGHT HUNDRED"));
     }    
+
+    @Test
+    public void shouldConvertNumbersWithOnlyZeroes() throws Exception {
+        // Arrange
+        String number = "00";
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+
+        // Assert
+        assertThat(result, equalTo("ZERO"));
+    }
 }
