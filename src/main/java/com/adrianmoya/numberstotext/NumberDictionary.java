@@ -52,4 +52,17 @@ public class NumberDictionary {
                 TENS_20_TO_90_DICTIONARY.put('9', "NINETY");
         }
 
+        public static Map<Character, String> CHUNK_SUFFIXES;
+        static {
+                CHUNK_SUFFIXES = new HashMap<>();
+                CHUNK_SUFFIXES.put('1', "THOUSAND");
+                CHUNK_SUFFIXES.put('2', "MILLION");
+                CHUNK_SUFFIXES.put('3', "BILLION");
+                CHUNK_SUFFIXES.put('4', "TRILLION");
+                CHUNK_SUFFIXES.put('5', "QUADRILLION");
+                CHUNK_SUFFIXES.put('6', "QUINILLION");
+                CHUNK_SUFFIXES.put('7', "SEXTILLION");
+                CHUNK_SUFFIXES.put('8', "SEPTILLION");
+                CHUNK_SUFFIXES.put('9', "OCTILLION");
+        }
 }
