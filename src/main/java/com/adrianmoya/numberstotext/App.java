@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         String input = args[0];
         try {
-            // Save check to see if it's a correctly formatted number
+            // Save check to see if it's a correctly formatted number within possible range
             Long.valueOf(input);
             
             String result = NumberToTextConverter.convertNumber(input);

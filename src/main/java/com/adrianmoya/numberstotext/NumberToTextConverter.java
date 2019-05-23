@@ -5,37 +5,41 @@ package com.adrianmoya.numberstotext;
  */
 public class NumberToTextConverter {
 
+    static final Character CHAR_ZERO = '0';
+
     public static String convertNumber(String number) throws Exception {
 
-        // Process minus sign if present
-        if (Long.valueOf(number) < 0l) {
+        Character minus = '-';
+        if (minus.equals(number.charAt(0))) {
             StringBuilder sb = new StringBuilder();
             return sb.append("MINUS ").append(convertNumber(number.replace("-", ""))).toString();
         }
 
         // Process number in the range of hundreds
-        if(number.length() < 4) {
+        if (number.length() < 4) {
             int intNumber = Integer.valueOf(number);
-    
+            // Get the number with leading zeroes removed
+            number = String.valueOf(intNumber);
+
             if (intNumber >= 0 && intNumber < 10) {
                 return convertOnes(number.charAt(0));
             }
-    
+
             if (intNumber >= 10 && intNumber < 100) {
                 return convertTens(number);
             }
-    
+
             if (intNumber >= 100 && intNumber < 1000) {
                 return convertHundreds(number);
-            }    
+            }
         }
 
         // Process bigger number in chunks of 3 digits + corresponding suffix
         StringBuilder sb = new StringBuilder();
         int chunksCount = (int) Math.ceil(Double.valueOf(number.length()) / 3);
-        int chunksLeft = chunksCount -1;
-        String chunk = number.substring(0, number.length() - chunksLeft*3 );
-        sb.append(convertChunk(chunk, NumberDictionary.CHUNK_SUFFIXES.get((char)(chunksLeft+'0'))));
+        int chunksLeft = chunksCount - 1;
+        String chunk = number.substring(0, number.length() - chunksLeft * 3);
+        sb.append(convertChunk(chunk, NumberDictionary.CHUNK_SUFFIXES.get((char) (chunksLeft + '0'))));
         sb.append(convertNumber(number.substring(chunk.length())));
         return sb.toString();
     }
@@ -68,8 +72,7 @@ public class NumberToTextConverter {
             // Get position in the TENS_20_TO_90_DICTIONARY
             char[] digits = number.toCharArray();
             sb.append(NumberDictionary.TENS_20_TO_90_DICTIONARY.get(digits[0]));
-            Character zero = '0';
-            if (!zero.equals(digits[1])) {
+            if (!CHAR_ZERO.equals(digits[1])) {
                 sb.append(" ");
                 sb.append(convertOnes(digits[1]));
             }
