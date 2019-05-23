@@ -11,10 +11,12 @@ public class NumberToTextConverter {
 
     /**
      * Converts a number into it's text representation.
+     * 
      * @param number A positive or negative integer number
      * @return The text that represents the number in english words
+     * @throws Exception
      */
-    public static String convertNumber(String number) {
+    public static String convertNumber(String number) throws Exception {
         
         // Check if the number is negative
         if (MINUS.equals(number.charAt(0))) {
@@ -47,7 +49,11 @@ public class NumberToTextConverter {
         int chunksCount = (int) Math.ceil(Double.valueOf(number.length()) / 3);
         int chunksLeft = chunksCount - 1;
         String chunk = number.substring(0, number.length() - chunksLeft * 3);
-        sb.append(convertChunk(chunk, NumberDictionary.CHUNK_SUFFIXES.get((char) (chunksLeft + '0'))));
+        String prefix = NumberDictionary.CHUNK_SUFFIXES.get((char) (chunksLeft + '0'));
+        if(prefix == null) {
+            throw new Exception("Can't convert this number yet");
+        }
+        sb.append(convertChunk(chunk, prefix));
         // Discard the rest if its only zeroes
         String rest = number.substring(chunk.length());
         if(!isOnlyZeroes(rest)){
@@ -56,13 +62,13 @@ public class NumberToTextConverter {
         return sb.toString();
     }
 
-    private static String convertChunk(String chunk, String suffix) {
+    private static String convertChunk(String chunk, String suffix) throws Exception {
         StringBuilder sb = new StringBuilder();
         sb.append(convertNumber(chunk)).append(" ").append(suffix);
         return sb.toString();
     }
 
-    private static String convertHundreds(String number) {
+    private static String convertHundreds(String number) throws Exception {
         StringBuilder sb = new StringBuilder();
         char[] digits = number.toCharArray();
         sb.append(NumberDictionary.ONES_DICTIONARY.get(digits[0]));

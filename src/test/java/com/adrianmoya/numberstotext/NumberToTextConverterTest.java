@@ -1,14 +1,20 @@
 package com.adrianmoya.numberstotext;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Unit test for numbers to text converter
  */
 public class NumberToTextConverterTest {
+
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
     @Test
     public void shouldConvertNumbersInTheOnesPlace() throws Exception {
         // Arrange
@@ -157,7 +163,6 @@ public class NumberToTextConverterTest {
         assertThat(result, equalTo("THIRTY SIX"));
     }
 
-
     @Test
     public void shouldConvertThreeDigitChunkWithTwoLeadingZeroes() throws Exception {
         // Arrange
@@ -182,7 +187,6 @@ public class NumberToTextConverterTest {
         assertThat(result, equalTo("EIGHT"));
     }
 
-
     @Test
     public void shouldHandleNumbersWithLeadingZeroes() throws Exception {
         // Arrange
@@ -193,7 +197,7 @@ public class NumberToTextConverterTest {
 
         // Assert
         assertThat(result, equalTo("EIGHT HUNDRED"));
-    }    
+    }
 
     @Test
     public void shouldConvertNumbersWithOnlyZeroes() throws Exception {
@@ -217,5 +221,16 @@ public class NumberToTextConverterTest {
 
         // Assert
         assertThat(result, equalTo("SIX HUNDRED SEVENTY MILLION"));
-    }    
+    }
+
+    @Test
+    public void shouldFailOnUnsupportedNumbers() throws Exception {
+        // Arrange
+        String number = "1000000000000000000000000000000";
+        exceptionRule.expect(Exception.class);
+        exceptionRule.expectMessage("Can't convert this number yet");;
+
+        // Act
+        String result = NumberToTextConverter.convertNumber(number);
+    }
 }
