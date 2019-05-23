@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class NumberDictionary {
 
-        public static Map<Character, String> ONES_DICTIONARY;
+        public static final Map<Character, String> ONES_DICTIONARY;
         static {
                 ONES_DICTIONARY = new HashMap<>();
                 ONES_DICTIONARY.put('0', "ZERO");
@@ -24,7 +24,7 @@ public class NumberDictionary {
                 ONES_DICTIONARY.put('9', "NINE");
         }
 
-        public static Map<String, String> TENS_10_TO_19_DICTIONARY;
+        public static final Map<String, String> TENS_10_TO_19_DICTIONARY;
         static {
                 TENS_10_TO_19_DICTIONARY = new HashMap<>();
                 TENS_10_TO_19_DICTIONARY.put("10", "TEN");
@@ -39,7 +39,7 @@ public class NumberDictionary {
                 TENS_10_TO_19_DICTIONARY.put("19", "NINETEEN");
         }
 
-        public static Map<Character, String> TENS_20_TO_90_DICTIONARY;
+        public static final Map<Character, String> TENS_20_TO_90_DICTIONARY;
         static {
                 TENS_20_TO_90_DICTIONARY = new HashMap<>();
                 TENS_20_TO_90_DICTIONARY.put('2', "TWENTY");
@@ -52,7 +52,7 @@ public class NumberDictionary {
                 TENS_20_TO_90_DICTIONARY.put('9', "NINETY");
         }
 
-        public static Map<Character, String> CHUNK_SUFFIXES;
+        public static final Map<Character, String> CHUNK_SUFFIXES;
         static {
                 CHUNK_SUFFIXES = new HashMap<>();
                 CHUNK_SUFFIXES.put('1', "THOUSAND");

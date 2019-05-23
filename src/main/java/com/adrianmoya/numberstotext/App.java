@@ -1,7 +1,7 @@
 package com.adrianmoya.numberstotext;
 
 /**
- * Hello world!
+ * Numbers to text. A TDD Exercise
  *
  */
 public class App {
@@ -13,7 +13,9 @@ public class App {
             printUsage();
             System.exit(1);
         }
+
         String input = args[0];
+        
         // Is this a valid number? 
         if(input.matches(ONLY_NUMBERS_PATTERN)) {
             String result = NumberToTextConverter.convertNumber(input);

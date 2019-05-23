@@ -1,7 +1,7 @@
 package com.adrianmoya.numberstotext;
 
 /**
- * This is the main converter from numbers to text
+ * Converter from numbers to text
  */
 public class NumberToTextConverter {
 
